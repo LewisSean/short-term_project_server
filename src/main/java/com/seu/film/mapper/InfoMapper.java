@@ -7,4 +7,6 @@ import java.util.List;
 public interface InfoMapper {
     @Select("SELECT * FROM info_test")
     List<Info> findAllInfo();
+    @Select("select * from info_test where name like '%${value}%'")
+    List<Info> findInfoByKeyWord(String keyWord);
 }

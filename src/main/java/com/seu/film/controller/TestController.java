@@ -71,4 +71,12 @@ public class TestController {
         System.out.println(info.toString());
         return "ok";
     }
+
+
+    @RequestMapping("/findFilm/{keyWord}")
+    @ResponseBody
+    public ResultDTO<Info> findFilm(@PathVariable("keyWord")String keyWord) throws Exception{
+        System.out.println(keyWord);
+        return infoService.findInfoByKeyWord(keyWord);
+    }
 }
