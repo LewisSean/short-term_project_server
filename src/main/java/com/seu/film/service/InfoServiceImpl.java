@@ -22,6 +22,17 @@ public class InfoServiceImpl implements InfoService {    //类实现接口InfoSe
     }
 
     @Override
+    public ResultDTO<Info> findInfoByKeyWord(String keyWord) {
+        ResultDTO<Info> resultDTO = new ResultDTO<>();
+        List<Info> data = new ArrayList<>();
+        data = infoMapper.findInfoByKeyWord(keyWord);
+        resultDTO.setData(data);
+        resultDTO.setCode(7);
+        resultDTO.setMsg("关键字查询");
+        return resultDTO;
+    }
+
+    @Override
     public ResultDTO<Info> findAllInfo2() {
         ResultDTO<Info> resultDTO = new ResultDTO<>();
         List<Info> data = new ArrayList<>();
