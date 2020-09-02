@@ -1,9 +1,6 @@
 package com.seu.film.controller;
 
-import com.seu.film.pojo.Film_info;
-import com.seu.film.pojo.Film_shows;
-import com.seu.film.pojo.Info;
-import com.seu.film.pojo.ResultDTO;
+import com.seu.film.pojo.*;
 import com.seu.film.service.Film_InfoService;
 import com.seu.film.service.Film_showsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +48,20 @@ public class FlimController {
     public ResultDTO<Film_shows> findFilm(@PathVariable("id")int id) throws Exception{
         System.out.println(id);
         return film_showsService.findFilm_showsById(id);
+    }
+
+    //http://localhost:8090/film/test3/findAllFilm_tab
+    @RequestMapping("/findAllFilm_tab")
+    @ResponseBody
+    public ResultDTO<Film_tab> findAllFilm_tab() throws Exception{
+        return film_infoService.findAllFilm_tab();
+    }
+
+    //http://localhost:8090/film/test3/findFilm_tabById/1
+    @RequestMapping("/findFilm_tabById/{id}")
+    @ResponseBody
+    public ResultDTO<Film_tab> findFilm_tabById(@PathVariable("id")int id) throws Exception{
+        System.out.println(id);
+        return film_infoService.findFilm_tabById(id);
     }
 }

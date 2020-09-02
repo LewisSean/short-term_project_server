@@ -2,6 +2,7 @@ package com.seu.film.service;
 
 import com.seu.film.mapper.Film_InfoMapper;
 import com.seu.film.pojo.Film_info;
+import com.seu.film.pojo.Film_tab;
 import com.seu.film.pojo.ResultDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +36,28 @@ public class Film_InfoServiceImpl implements Film_InfoService{
         resultDTO.setData(data);
         resultDTO.setCode(7);
         resultDTO.setMsg("关键字查询电影");
+        return resultDTO;
+    }
+
+    @Override
+    public ResultDTO<Film_tab> findFilm_tabById(int id) {
+        ResultDTO<Film_tab> resultDTO = new ResultDTO<>();
+        List<Film_tab> data = new ArrayList<>();
+        data = film_infoMapper.findFilm_tabById(id);
+        resultDTO.setData(data);
+        resultDTO.setCode(0);
+        resultDTO.setMsg("id查询电影标签");
+        return resultDTO;
+    }
+
+    @Override
+    public ResultDTO<Film_tab> findAllFilm_tab() {
+        ResultDTO<Film_tab> resultDTO = new ResultDTO<>();
+        List<Film_tab> data = new ArrayList<>();
+        data = film_infoMapper.findAllFilm_tab();
+        resultDTO.setData(data);
+        resultDTO.setCode(0);
+        resultDTO.setMsg("查询所有电影标签");
         return resultDTO;
     }
 }
