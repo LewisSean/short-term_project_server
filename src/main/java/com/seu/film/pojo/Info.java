@@ -1,11 +1,16 @@
 package com.seu.film.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 public class Info {
     private int id;
     private String name;
     private String pwd;
     private double balance;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthday;
     public Info() {
     }
 
@@ -14,6 +19,10 @@ public class Info {
         this.name = name;
         this.pwd = pwd;
         this.balance = balance;
+    }
+
+    public Date getBirthday() {
+        return birthday;
     }
 
     public int getId() {
@@ -30,6 +39,26 @@ public class Info {
 
     public double getBalance() {
         return balance;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     @Override

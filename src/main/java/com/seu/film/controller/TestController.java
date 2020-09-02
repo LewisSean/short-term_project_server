@@ -1,9 +1,12 @@
 package com.seu.film.controller;
 
 import com.seu.film.pojo.Info;
+import com.seu.film.pojo.ResultDTO;
 import com.seu.film.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,5 +42,28 @@ public class TestController {
     @ResponseBody                 //！！！ 将返回的java对象写入http当中
     public List<Info> findAll() throws Exception{
         return infoService.findAllInfo();
+    }
+
+    //http://localhost:8090/film/test/findAll2
+    @RequestMapping("/findAll2")
+    @ResponseBody                 //！！！ 将返回的java对象写入http当中
+    public ResultDTO<Info> findAll2() throws Exception{
+        return infoService.findAllInfo2();
+    }
+
+    //http://localhost:8090/film/test.html
+    @PostMapping("/login")      //只能响应post请求，get请求不可以
+    public String login(Info info) throws Exception{
+        System.out.println(info.toString());
+        return "index";                                    //跳转到index页面
+    }
+
+
+    //删除用户
+    //http://localhost:8090/film/test/admin/del/1
+    @RequestMapping("/admin/del/{id}")
+    public String del(@PathVariable("id")int id) throws Exception{
+        System.out.println(id);
+        return "index";
     }
 }

@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface InfoMapper {
-    @Select("SELECT * FROM info")
+    @Select("SELECT * FROM info_test")
     List<Info> findAllInfo();
 }
