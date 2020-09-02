@@ -43,4 +43,15 @@ public class InfoServiceImpl implements InfoService {    //类实现接口InfoSe
         return resultDTO;
     }
 
+    @Override
+    public ResultDTO<Info> findInfoByInfo(Info info) {
+        ResultDTO<Info> resultDTO = new ResultDTO<>();
+        List<Info> data = new ArrayList<>();
+        data = infoMapper.findInfoByInfo(info);
+        resultDTO.setData(data);
+        resultDTO.setCode(5);
+        resultDTO.setMsg("success");
+        return resultDTO;
+    }
+
 }

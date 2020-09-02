@@ -72,11 +72,19 @@ public class TestController {
         return "ok";
     }
 
-
+    //使用地址栏传递参数
     @RequestMapping("/findFilm/{keyWord}")
     @ResponseBody
     public ResultDTO<Info> findFilm(@PathVariable("keyWord")String keyWord) throws Exception{
         System.out.println(keyWord);
         return infoService.findInfoByKeyWord(keyWord);
+    }
+
+    //使用报文中的data段传递参数，安全性高
+    @RequestMapping("/findFilmByInfo")
+    @ResponseBody
+    public ResultDTO<Info> findFilmByInfo(@RequestBody Info info)throws Exception{
+        System.out.println(info.toString());
+        return infoService.findInfoByInfo(info);
     }
 }

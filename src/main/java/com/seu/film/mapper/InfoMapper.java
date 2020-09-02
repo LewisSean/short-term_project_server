@@ -9,4 +9,7 @@ public interface InfoMapper {
     List<Info> findAllInfo();
     @Select("select * from info_test where name like '%${value}%'")
     List<Info> findInfoByKeyWord(String keyWord);
+
+    //根据Info查询信息
+    List<Info> findInfoByInfo(Info info);
 }
