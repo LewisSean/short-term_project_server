@@ -52,4 +52,14 @@ public class Film_shows {
     public void setReserve_info(String reserve_info) {
         this.reserve_info = reserve_info;
     }
+
+    @Override
+    public String toString() {
+        return "Film_shows{" +
+                "film_id=" + film_id +
+                ", hall_id=" + hall_id +
+                ", start_time=" + start_time +
+                ", reserve_info='" + reserve_info + '\'' +
+                '}';
+    }
 }

@@ -6,6 +6,7 @@ import com.seu.film.service.Film_showsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -64,4 +65,13 @@ public class FlimController {
         System.out.println(id);
         return film_infoService.findFilm_tabById(id);
     }
+
+
+    @RequestMapping("/updateFilm_shows")
+    @ResponseBody
+    public ResultDTO<Film_shows> updateFilm_shows(@RequestBody Film_shows film_shows)throws Exception{
+        System.out.println(film_shows.toString());
+        return film_showsService.updateFilm_shows(film_shows);
+    }
+
 }
