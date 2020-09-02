@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seu.film.mapper.Order_evaluationMapper">    <!-- 注意修改-->
+    <!-- #{name} 获取Info对象的name
+    模糊查询： name LIKE '%${name}$%'-->
+
+    <insert id="addEvaluation" parameterType="Order_evaluation">
+        INSERT INTO order_evaluation (order_id,rank,mark)  VALUES (#{order_id},#{rank},#{mark})
+    </insert>
+</mapper>

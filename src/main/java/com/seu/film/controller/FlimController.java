@@ -3,6 +3,8 @@ package com.seu.film.controller;
 import com.seu.film.pojo.*;
 import com.seu.film.service.Film_InfoService;
 import com.seu.film.service.Film_showsService;
+import com.seu.film.service.Order_evaluationService;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,9 @@ public class FlimController {
 
     @Autowired
     Film_showsService film_showsService;
+
+    @Autowired
+    Order_evaluationService order_evaluationService;
 
     //http://localhost:8090/film/test3/findAllFilm
     @RequestMapping("/findAllFilm")
@@ -72,6 +77,14 @@ public class FlimController {
     public ResultDTO<Film_shows> updateFilm_shows(@RequestBody Film_shows film_shows)throws Exception{
         System.out.println(film_shows.toString());
         return film_showsService.updateFilm_shows(film_shows);
+    }
+
+
+    @RequestMapping("/addEvaluation")
+    @ResponseBody
+    public ResultDTO<Order_evaluation> addEvaluation(@RequestBody Order_evaluation order_evaluation)throws Exception{
+        System.out.println(order_evaluation.toString());
+        return order_evaluationService.addEvaluation(order_evaluation);
     }
 
 }
