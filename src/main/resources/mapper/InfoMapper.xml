@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seu.film.mapper.InfoMapper">    <!-- 注意修改-->
+
+</mapper>
+
+<!-- 对应接口InfoMapper，可以优化sql操作 -->
