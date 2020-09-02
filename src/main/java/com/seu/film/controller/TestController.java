@@ -5,10 +5,7 @@ import com.seu.film.pojo.ResultDTO;
 import com.seu.film.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -65,5 +62,13 @@ public class TestController {
     public String del(@PathVariable("id")int id) throws Exception{
         System.out.println(id);
         return "index";
+    }
+
+    //http://localhost:8090/film/test2.html
+    @RequestMapping("/rqJson1")
+    @ResponseBody
+    public String rqJson1(@RequestBody Info info){
+        System.out.println(info.toString());
+        return "ok";
     }
 }
