@@ -12,4 +12,7 @@ public interface InfoMapper {
 
     //根据Info查询信息
     List<Info> findInfoByInfo(Info info);
+
+    //DML insert update delete
+    int addInfo(Info info);
 }

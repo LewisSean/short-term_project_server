@@ -54,4 +54,22 @@ public class InfoServiceImpl implements InfoService {    //类实现接口InfoSe
         return resultDTO;
     }
 
+    @Override
+    public ResultDTO<Info> addInfo(Info info){
+        ResultDTO<Info> resultDTO = new ResultDTO<>();
+        try{
+            int i = infoMapper.addInfo(info);
+            if(i > 0){
+                resultDTO.setMsg("sign up success!");
+            }else{
+                resultDTO.setMsg("fail!");
+            }
+
+        }catch(Exception e){
+            resultDTO.setMsg("fail!");
+        }
+        //如果希望注册成功立即登录，可能需要查询一次，那么可以直接在该业务中查询用户
+        return resultDTO;
+    }
+
 }

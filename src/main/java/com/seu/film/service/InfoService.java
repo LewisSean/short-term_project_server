@@ -10,4 +10,5 @@ public interface InfoService {    //业务逻辑，在Mapper层（sql操作）�
     ResultDTO<Info> findInfoByKeyWord(String keyWord);
     ResultDTO<Info> findAllInfo2();
     ResultDTO<Info> findInfoByInfo(Info info);
+    ResultDTO<Info> addInfo(Info info);
 }

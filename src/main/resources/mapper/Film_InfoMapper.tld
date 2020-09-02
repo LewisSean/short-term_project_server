@@ -2,16 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.seu.film.mapper.InfoMapper">    <!-- 注意修改-->
+<mapper namespace="com.seu.film.mapper.Film_infoMapper">
     <!-- #{name} 获取Info对象的name
     模糊查询： name LIKE '%${name}$%'-->
     <select id="findInfoByInfo" resultType="Info" parameterType="Info">
         SELECT * FROM info WHERE name = #{name} AND id = #{id}
     </select>
-
-    <insert id="addInfo" parameterType="Info">
-        INSERT INTO info (name,pwd,balance)  VALUES (#{name},#{pwd},#{balance})
-    </insert>
 </mapper>
-
-<!-- 对应接口InfoMapper，可以优化sql操作 -->

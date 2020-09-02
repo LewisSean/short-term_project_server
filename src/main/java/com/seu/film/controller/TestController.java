@@ -87,4 +87,11 @@ public class TestController {
         System.out.println(info.toString());
         return infoService.findInfoByInfo(info);
     }
+
+    @RequestMapping("/addInfo")
+    @ResponseBody
+    public ResultDTO<Info> addInfo(@RequestBody Info info)throws Exception{
+        System.out.println(info.toString());
+        return infoService.addInfo(info);
+    }
 }
