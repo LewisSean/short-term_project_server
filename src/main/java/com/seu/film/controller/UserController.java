@@ -7,10 +7,7 @@ import com.seu.film.service.UserService;
 import com.seu.film.service.User_tabService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("test1")
@@ -36,6 +33,7 @@ public class UserController {
         return userService.findUserInfo(user);
     }
 
+    //POST方法，用user对象来添加user表的对应记录
     @RequestMapping("/addUserInfo")
     @ResponseBody
     public ResultDTO<User> addUserInfo(@RequestBody User user)throws Exception{
@@ -43,6 +41,7 @@ public class UserController {
         return userService.addUserInfo(user);
     }
 
+    //POST方法，用user对象来修改user表的对应记录
     @RequestMapping("/modifyUserInfo")
     @ResponseBody
     public ResultDTO<User> modifyUserInfo(@RequestBody User user)throws Exception{
@@ -50,14 +49,16 @@ public class UserController {
         return userService.modifyUserInfo(user);
     }
 
-    @RequestMapping("/findUser_tab")
+    //http://localhost:8090/film/test1/findUser_tab/1
+    //用user_id来查询User_tab表的对应记录
+    @RequestMapping("/findUser_tab/{user_id}")
     @ResponseBody
-    public ResultDTO<User_tab> findUser_tab(@RequestBody int user_id)throws Exception{
+    public ResultDTO<User_tab> findUser_tab(@PathVariable("user_id")int user_id)throws Exception{
 
         return user_tabService.findUser_tab(user_id);
     }
 
-
+    //POST，用user_tab类对象来修改user_tab库的对应记录
     @RequestMapping("/modifyUser_tab")
     @ResponseBody
     public ResultDTO<User_tab> modifyUser_tab(@RequestBody User_tab user_tab)throws Exception{

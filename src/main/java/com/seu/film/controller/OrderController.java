@@ -29,6 +29,7 @@ public class OrderController {
     Film_InfoService film_infoService;
 
     //http://localhost:8090/film/test2/findOrderByUser_id/1
+    //返回一个用户的所有订单记录，user_id为查询关键字
     @RequestMapping("/findOrderByUser_id/{user_id}")
     @ResponseBody
     public ResultDTO<Order> findOrderByUser_id(@PathVariable("user_id")int user_id) throws Exception{
@@ -37,14 +38,20 @@ public class OrderController {
     }
 
     //http://localhost:8090/film/test2/findOrderByFilm_shows
+
+    //查询一个电影场次的所有订单记录，hall_id和start_time是确定一个电影场次的查询关键字
+
+    //！！！！！！！！注意传输查询的data字段时，start_time传的是形如1599880356000的13位的长整数，精确到秒
     @RequestMapping("/findOrderByFilm_shows")
     @ResponseBody
-    public ResultDTO<Order> updateFilm_shows(@RequestBody Film_shows film_shows)throws Exception{
+    public ResultDTO<Order> findOrderByFilm_shows(@RequestBody Film_shows film_shows)throws Exception{
         System.out.println(film_shows.toString());
         return orderService.findOrderByFilm_shows(film_shows);
     }
 
+
     //http://localhost:8090/film/test2/findOrderByOrder_id/2
+    //通过order_id查找order表的订单记录
     @RequestMapping("/findOrderByOrder_id/{order_id}")
     @ResponseBody
     public ResultDTO<Order> findOrderByOrder_id(@PathVariable("order_id")int order_id) throws Exception{
@@ -53,7 +60,7 @@ public class OrderController {
     }
 
 
-    //添加订单评论，添加评论会更改用户的个人标签！！！！！
+    //POST方法，对Order_evaluation表添加影评记录，添加影评成功之后，会更改user_tab表的用户的个人标签！！！！！
     @RequestMapping("/addEvaluation")
     @ResponseBody
     public ResultDTO<Order_evaluation> addEvaluation(@RequestBody Order_evaluation order_evaluation)throws Exception{
@@ -63,7 +70,7 @@ public class OrderController {
         ResultDTO<Order_evaluation> retVal = order_evaluationService.addEvaluation(order_evaluation);
 
         //更改用户的个人标签
-        if(retVal.getMsg() == "添加评价成功!" && order_evaluation.getRank() != 3) {
+        if(retVal.getMsg().equals("添加评价成功!") && order_evaluation.getRank() != 3) {
             List<Order> data = this.findOrderByOrder_id(order_evaluation.getOrder_id()).getData();
             ResultDTO<User_tab> res1 = user_tabService.findUser_tab(data.get(0).getUser_id());
             User_tab user_tab = res1.getData().get(0);
@@ -84,17 +91,17 @@ public class OrderController {
             if(film_tab.isHorror())user_tab.setHorror(user_tab.getHorror() + flag);
             if(film_tab.isAnimation())user_tab.setAnimation(user_tab.getAnimation() + flag);
             if(film_tab.isWar())user_tab.setWar(user_tab.getWar() + flag);
-            System.out.println("------------------------------------------------------"+user_tab.toString());
-            ResultDTO<User_tab> res = user_tabService.modifyUser_tab(user_tab);
-            System.out.println(res.toString());
-            System.out.println("------------------------------------------------------");
+            //System.out.println("------------------------------------------------------"+user_tab.toString());
+            user_tabService.modifyUser_tab(user_tab);
+            //System.out.println(res.toString());
+            //System.out.println("------------------------------------------------------");
         }
 
         return retVal;
     }
 
     //http://localhost:8090/film/test2/findOrder_evaluationByFilm_id/1
-    //通过film_id查询一部电影的所有影评(包括用户的user_name，rank，mark)
+    //通过film_id查询一部电影的所有影评(返回的是：{user_name，rank(int, 1~5星级)，mark(string,影评)} )
     @RequestMapping("/findOrder_evaluationByFilm_id/{film_id}")
     @ResponseBody
     public ResultDTO<Map> findOrder_evaluationByFilm_id(@PathVariable("film_id")int film_id) throws Exception{

@@ -10,7 +10,7 @@
     </select>
 
     <select id="findOrderByFilm_shows" resultType="Order" parameterType="Film_shows">
-        SELECT * FROM film.order WHERE start_time=#{start_time} AND hall_id=#{hall_id}
+        SELECT * FROM film.order WHERE  hall_id=#{hall_id} AND start_time = #{start_time}
     </select>
 
     <select id="findOrderByOrder_id" resultType="Order" parameterType="Int">

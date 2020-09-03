@@ -28,14 +28,15 @@ public class FilmController {
     Order_evaluationService order_evaluationService;
 
     //http://localhost:8090/film/test3/findAllFilm
+    //查询所有电影场次信息，返回的是film_info和film_tab表连接查询的记录
     @RequestMapping("/findAllFilm")
-    @ResponseBody                 //！！！ 将返回的java对象写入http当中
+    @ResponseBody
     public ResultDTO<Film_info> findAllFilm() throws Exception{
         return film_infoService.findAllFilm();
     }
 
     //http://localhost:8090/film/test3/findFilm/fight
-    //使用地址栏传递参数
+    //film_name关键词模糊查询电影信息，返回的是film_info和film_tab表连接查询的记录
     @RequestMapping("/findFilm/{keyWord}")
     @ResponseBody
     public ResultDTO<Film_info> findFilm(@PathVariable("keyWord")String keyWord) throws Exception{
@@ -44,15 +45,15 @@ public class FilmController {
     }
 
     //http://localhost:8090/film/test3/findAllFilm_shows
-    //查询所有电影排场
+    //查询film_shows表中的所有电影排场记录
     @RequestMapping("/findAllFilm_shows")
-    @ResponseBody                 //！！！ 将返回的java对象写入http当中
+    @ResponseBody
     public ResultDTO<Film_shows> findAllFilm_shows() throws Exception{
         return film_showsService.findAllFilm_shows();
     }
 
     //http://localhost:8090/film/test3/findFilm_showsById/1
-    //通过电影的film_id查询排场
+    //通过电影的film_id查询表film_shows
     @RequestMapping("/findFilm_showsById/{id}")
     @ResponseBody
     public ResultDTO<Film_shows> findFilm(@PathVariable("id")int id) throws Exception{
@@ -61,7 +62,7 @@ public class FilmController {
     }
 
     //http://localhost:8090/film/test3/findAllFilm_tab
-    //查询所有的电影标签
+    //查询所有的电影标签,film_tab表的所有记录
     @RequestMapping("/findAllFilm_tab")
     @ResponseBody
     public ResultDTO<Film_tab> findAllFilm_tab() throws Exception{
@@ -69,7 +70,7 @@ public class FilmController {
     }
 
     //http://localhost:8090/film/test3/findFilm_tabById/1
-    //通过电影film_id查询电影标签
+    //通过电影film_id查询film_tab表
     @RequestMapping("/findFilm_tabById/{id}")
     @ResponseBody
     public ResultDTO<Film_tab> findFilm_tabById(@PathVariable("id")int id) throws Exception{
@@ -78,6 +79,7 @@ public class FilmController {
     }
 
 
+    //POST方法，对film_shows表的某条场次记录更新（如修改座位信息）
     //更新电影场次信息
     @RequestMapping("/updateFilm_shows")
     @ResponseBody
@@ -88,7 +90,7 @@ public class FilmController {
 
 
     //http://localhost:8090/film/test3/guess_you_like/1
-    //根据用户user_tab查询前K部猜你喜欢的电影
+    //根据用户user_tab查询前K部猜你喜欢的电影，返回的是film_info和film_tab表连接查询的记录
     //向量模型
     @RequestMapping("/guess_you_like/{user_id}")
     @ResponseBody
