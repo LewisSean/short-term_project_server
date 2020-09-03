@@ -10,7 +10,9 @@
         INSERT INTO order_evaluation (order_id,rank,mark)  VALUES (#{order_id},#{rank},#{mark})
     </insert>
 
-    <select id="findOrder_evaluationByFilm_id" resultType="Order_evaluation" parameterType="Int">
-        SELECT * FROM film.order WHERE start_time=#{start_time} AND hall_id=#{hall_id}
+    <select id="findOrder_evaluationByFilm_id" resultType="Map" parameterType="Int">
+        SELECT user_name, rank, mark FROM film.order, film.user, order_evaluation
+        WHERE  order_evaluation.order_id = film.order.order_id AND film.order.user_id = film.user.user_id
+        AND film.order.film_id = #{film_id}
     </select>
 </mapper>

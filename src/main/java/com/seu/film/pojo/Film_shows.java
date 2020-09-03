@@ -10,15 +10,19 @@ public class Film_shows {
     @DateTimeFormat(pattern = "yyyy-MM-dd-HH-mm-ss")
     private Date start_time;
     private String reserve_info;
+    private int money;
+    private String remark;
 
     public Film_shows() {
     }
 
-    public Film_shows(int film_id, int hall_id, Date start_time, String reserve_info) {
+    public Film_shows(int film_id, int hall_id, Date start_time, String reserve_info, int money, String remark) {
         this.film_id = film_id;
         this.hall_id = hall_id;
         this.start_time = start_time;
         this.reserve_info = reserve_info;
+        this.money = money;
+        this.remark = remark;
     }
 
     public int getFilm_id() {
@@ -53,6 +57,22 @@ public class Film_shows {
         this.reserve_info = reserve_info;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     @Override
     public String toString() {
         return "Film_shows{" +
@@ -60,6 +80,8 @@ public class Film_shows {
                 ", hall_id=" + hall_id +
                 ", start_time=" + start_time +
                 ", reserve_info='" + reserve_info + '\'' +
+                ", money=" + money +
+                ", remark='" + remark + '\'' +
                 '}';
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.swing.plaf.synth.SynthEditorPaneUI;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("test2")
@@ -92,12 +93,12 @@ public class OrderController {
         return retVal;
     }
 
-
+    //http://localhost:8090/film/test2/findOrder_evaluationByFilm_id/1
     //通过film_id查询一部电影的所有影评(包括用户的user_name，rank，mark)
-    @RequestMapping("/findOrderByOrder_id/{film_id}")
+    @RequestMapping("/findOrder_evaluationByFilm_id/{film_id}")
     @ResponseBody
-    public ResultDTO<Order_evaluation> findOrder_evaluationByFilm_id(@PathVariable("film_id")int film_id) throws Exception{
-        return null;
+    public ResultDTO<Map> findOrder_evaluationByFilm_id(@PathVariable("film_id")int film_id) throws Exception{
+        return order_evaluationService.findOrder_evaluationByFilm_id(film_id);
     }
 
 
