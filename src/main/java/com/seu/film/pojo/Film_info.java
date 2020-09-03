@@ -15,6 +15,7 @@ public class Film_info {
     private int duration;
     private String actor_list;
     private Film_tab film_tab;
+    private int state;
 
     public Film_info() {
         film_tab = new Film_tab();
@@ -23,7 +24,7 @@ public class Film_info {
     public Film_info(int film_id, String film_name, String post_url, Date release_date,
                      String director, String country, int duration, String actor_list,
                      boolean magic, boolean plot, boolean science_fiction, boolean romance, boolean history,
-                     boolean comedy, boolean action, boolean horror, boolean animation, boolean war
+                     boolean comedy, boolean action, boolean horror, boolean animation, boolean war,int state
                      )
     {
         this.film_id = film_id;
@@ -36,6 +37,7 @@ public class Film_info {
         this.actor_list = actor_list;
         this.film_tab = new Film_tab(film_id, magic, plot, science_fiction, romance,
                 history, comedy, action, horror, animation, war);
+        this.state = state;
     }
 
     public int getFilm_id() {
@@ -110,6 +112,15 @@ public class Film_info {
         this.film_tab = film_tab;
     }
 
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     @Override
     public String toString() {
         return "Film_info{" +
@@ -121,7 +132,8 @@ public class Film_info {
                 ", country='" + country + '\'' +
                 ", duration=" + duration +
                 ", actor_list='" + actor_list + '\'' +
-                ", film_tab=" + film_tab.toString() +
+                ", film_tab=" + film_tab +
+                ", state=" + state +
                 '}';
     }
 }

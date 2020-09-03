@@ -16,5 +16,7 @@ public interface Film_InfoMapper {
     @Select("SELECT * FROM film_tab")
     List<Film_tab> findAllFilm_tab();
 
+    @Select("SELECT * FROM film_info WHERE film_id = #{value}")
+    Film_info findFilmByFilm_Id(int film_id);
 
 }

@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("test3")
 public class FilmController {
+
+    private static int k = 1;
+
     @Autowired
     Film_InfoService film_infoService;
 
@@ -74,6 +77,7 @@ public class FilmController {
         return film_infoService.findFilm_tabById(id);
     }
 
+
     //更新电影场次信息
     @RequestMapping("/updateFilm_shows")
     @ResponseBody
@@ -83,7 +87,13 @@ public class FilmController {
     }
 
 
-
-
+    //http://localhost:8090/film/test3/guess_you_like/1
+    //根据用户user_tab查询前K部猜你喜欢的电影
+    //向量模型
+    @RequestMapping("/guess_you_like/{user_id}")
+    @ResponseBody
+    public ResultDTO<Film_info> guess_you_like(@PathVariable("user_id") int user_id) throws Exception{
+        return film_infoService.guess_you_like(user_id, k);
+    }
 
 }

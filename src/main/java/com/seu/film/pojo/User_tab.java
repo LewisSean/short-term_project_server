@@ -1,5 +1,7 @@
 package com.seu.film.pojo;
 
+import java.util.Map;
+
 public class User_tab {
     private int user_id;
     private int magic;
@@ -13,9 +15,9 @@ public class User_tab {
     private int animation;
     private int war;
 
+
     public User_tab() {
     }
-
     public User_tab(int user_id, int magic, int plot, int science_fiction, int romance,
                     int history, int comedy, int action, int horror, int animation, int war) {
         this.user_id = user_id;
