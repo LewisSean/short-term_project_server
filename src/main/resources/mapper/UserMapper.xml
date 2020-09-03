@@ -22,7 +22,10 @@
         VALUES (#{img_url},#{user_name},#{pwd},#{balance},#{level})
     </insert>
 
-
+    <update id="modifyUserInfo" parameterType="User">
+        UPDATE user SET img_url=#{img_url},user_name = #{user_name},pwd=#{pwd},balance=#{balance},level=#{level}
+        WHERE user_id=#{user_id}
+    </update>
 
 
 </mapper>

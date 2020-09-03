@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("User_tabService")
+@Service("user_tabService")
 @Transactional
 public class User_tabServiceImpl implements User_tabService{
     @Resource
