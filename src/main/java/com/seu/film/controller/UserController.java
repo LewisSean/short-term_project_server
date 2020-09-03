@@ -51,9 +51,9 @@ public class UserController {
 
     @RequestMapping("/findUserInfo_tab")
     @ResponseBody
-    public ResultDTO<User_tab> findUser_tab(@RequestBody User_tab user_tab)throws Exception{
-        System.out.println(user_tab.toString());
-        return user_tabService.findUser_tab(user_tab);
+    public ResultDTO<User_tab> findUser_tab(@RequestBody int user_id)throws Exception{
+
+        return user_tabService.findUser_tab(user_id);
     }
 
     @RequestMapping("/modifyUser_tab")

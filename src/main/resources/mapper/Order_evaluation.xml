@@ -9,4 +9,8 @@
     <insert id="addEvaluation" parameterType="Order_evaluation">
         INSERT INTO order_evaluation (order_id,rank,mark)  VALUES (#{order_id},#{rank},#{mark})
     </insert>
+
+    <select id="findOrder_evaluationByFilm_id" resultType="Order_evaluation" parameterType="Int">
+        SELECT * FROM film.order WHERE start_time=#{start_time} AND hall_id=#{hall_id}
+    </select>
 </mapper>

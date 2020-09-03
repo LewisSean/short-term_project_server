@@ -10,17 +10,17 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("User_tabService")
+@Service("user_tabService")
 @Transactional
 public class User_tabServiceImpl implements User_tabService{
     @Resource
     User_tabMapper user_tabMapper;
 
     @Override
-    public ResultDTO<User_tab> findUser_tab(User_tab user_tab) {
+    public ResultDTO<User_tab> findUser_tab(int user_id) {
         ResultDTO<User_tab> resultDTO = new ResultDTO<>();
         List<User_tab> data = new ArrayList<>();
-        data = user_tabMapper.findUser_tab(user_tab);
+        data = user_tabMapper.findUser_tab(user_id);
         resultDTO.setData(data);
         resultDTO.setCode(5);
         resultDTO.setMsg("success");

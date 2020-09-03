@@ -41,6 +41,7 @@ public class FilmController {
     }
 
     //http://localhost:8090/film/test3/findAllFilm_shows
+    //查询所有电影排场
     @RequestMapping("/findAllFilm_shows")
     @ResponseBody                 //！！！ 将返回的java对象写入http当中
     public ResultDTO<Film_shows> findAllFilm_shows() throws Exception{
@@ -48,7 +49,7 @@ public class FilmController {
     }
 
     //http://localhost:8090/film/test3/findFilm_showsById/1
-    //使用地址栏传递参数
+    //通过电影的film_id查询排场
     @RequestMapping("/findFilm_showsById/{id}")
     @ResponseBody
     public ResultDTO<Film_shows> findFilm(@PathVariable("id")int id) throws Exception{
@@ -57,6 +58,7 @@ public class FilmController {
     }
 
     //http://localhost:8090/film/test3/findAllFilm_tab
+    //查询所有的电影标签
     @RequestMapping("/findAllFilm_tab")
     @ResponseBody
     public ResultDTO<Film_tab> findAllFilm_tab() throws Exception{
@@ -64,6 +66,7 @@ public class FilmController {
     }
 
     //http://localhost:8090/film/test3/findFilm_tabById/1
+    //通过电影film_id查询电影标签
     @RequestMapping("/findFilm_tabById/{id}")
     @ResponseBody
     public ResultDTO<Film_tab> findFilm_tabById(@PathVariable("id")int id) throws Exception{
@@ -71,7 +74,7 @@ public class FilmController {
         return film_infoService.findFilm_tabById(id);
     }
 
-
+    //更新电影场次信息
     @RequestMapping("/updateFilm_shows")
     @ResponseBody
     public ResultDTO<Film_shows> updateFilm_shows(@RequestBody Film_shows film_shows)throws Exception{
@@ -80,11 +83,6 @@ public class FilmController {
     }
 
 
-    @RequestMapping("/addEvaluation")
-    @ResponseBody
-    public ResultDTO<Order_evaluation> addEvaluation(@RequestBody Order_evaluation order_evaluation)throws Exception{
-        System.out.println(order_evaluation.toString());
-        return order_evaluationService.addEvaluation(order_evaluation);
-    }
+
 
 }
