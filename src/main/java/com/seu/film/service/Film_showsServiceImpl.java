@@ -24,7 +24,7 @@ public class Film_showsServiceImpl implements  Film_showsService{
         List<Film_shows> data = new ArrayList<>();
         data = film_showsMapper.findAllFilm_shows();
         resultDTO.setData(data);
-        resultDTO.setCode(0);
+        resultDTO.setCode(data.size());
         resultDTO.setMsg("查询所有电影场次");
         return resultDTO;
     }
@@ -35,7 +35,7 @@ public class Film_showsServiceImpl implements  Film_showsService{
         List<Film_shows> data = new ArrayList<>();
         data = film_showsMapper.findFilm_showsById(id);
         resultDTO.setData(data);
-        resultDTO.setCode(0);
+        resultDTO.setCode(data.size());
         resultDTO.setMsg("查询指定id的电影场次");
         return resultDTO;
     }
@@ -48,7 +48,7 @@ public class Film_showsServiceImpl implements  Film_showsService{
             if(i > 0){
                 resultDTO.setMsg("修改场次信息成功!");
             }else{
-                resultDTO.setMsg("fail!");
+                resultDTO.setMsg("修改场次失败!");
             }
 
         }catch(Exception e){
