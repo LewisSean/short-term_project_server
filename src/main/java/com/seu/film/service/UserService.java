@@ -7,4 +7,5 @@ public interface UserService {
     ResultDTO<User> findUserInfo(User user);
     ResultDTO<User> addUserInfo(User user);
     ResultDTO<User> modifyUserInfo(User user);
+    ResultDTO<User> login(User user);
 }

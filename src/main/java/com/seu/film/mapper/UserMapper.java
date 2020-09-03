@@ -14,4 +14,7 @@ public interface UserMapper {
 
     //修改用户信息（余额/头像）
     int modifyUserInfo(User user);
+
+    //登录
+    List<User> login(User user);
 }

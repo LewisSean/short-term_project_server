@@ -67,4 +67,16 @@ public class User {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", img_url='" + img_url + '\'' +
+                ", user_name='" + user_name + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", balance=" + balance +
+                ", level=" + level +
+                '}';
+    }
 }

@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("UserService")
+@Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService{
     @Resource
@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
         List<User> data = new ArrayList<>();
         data = userMapper.findUserInfo(user);
         resultDTO.setData(data);
-        resultDTO.setCode(5);
+        resultDTO.setCode(data.size());
         resultDTO.setMsg("success");
         return resultDTO;
     }
@@ -47,6 +47,35 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ResultDTO<User> modifyUserInfo(User user) {
-        return null;
+        ResultDTO<User> resultDTO = new ResultDTO<>();
+        try{
+            int i = userMapper.modifyUserInfo(user);
+            if(i > 0){
+                resultDTO.setMsg("userinfo update success!");
+            }else{
+                resultDTO.setMsg("userinfo update fail!");
+            }
+
+        }catch(Exception e){
+            resultDTO.setMsg("fail!");
+        }
+        //如果希望注册成功立即登录，可能需要查询一次，那么可以直接在该业务中查询用户
+        return resultDTO;
+    }
+
+    @Override
+    public ResultDTO<User> login(User user) {
+        ResultDTO<User> resultDTO = new ResultDTO<>();
+        List<User> data = new ArrayList<>();
+        data = userMapper.login(user);
+        resultDTO.setData(data);
+        resultDTO.setCode(data.size());
+        if(resultDTO.getCode()!=0) {
+            resultDTO.setMsg("success");
+        }
+        else{
+            resultDTO.setMsg("fail");
+        }
+        return resultDTO;
     }
 }

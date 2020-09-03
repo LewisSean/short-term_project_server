@@ -22,7 +22,7 @@ public class User_tabServiceImpl implements User_tabService{
         List<User_tab> data = new ArrayList<>();
         data = user_tabMapper.findUser_tab(user_id);
         resultDTO.setData(data);
-        resultDTO.setCode(5);
+        resultDTO.setCode(data.size());
         resultDTO.setMsg("success");
         return resultDTO;
     }

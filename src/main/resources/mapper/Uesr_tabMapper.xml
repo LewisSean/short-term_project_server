@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seu.film.mapper.User_tabMapper">
+    <!-- resultType="User",返回参数类型；
+    paramentType="User",输入参数类型；
+    #{name} 获取User对象的name
+    模糊查询： name LIKE '%${name}$%'-->
+    <select id="findUser_Tab" resultType="User_tab" parameterType="User_tab">
+        SELECT * FROM user_tab WHERE user_id = #{user_id}
+    </select>
+
+
+</mapper>
