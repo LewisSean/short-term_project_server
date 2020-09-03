@@ -8,5 +8,12 @@
         SELECT * FROM user_tab WHERE user_id = #{user_id}
     </select>
 
-
+    <update id="modifyUser_tab" parameterType="User_tab">
+        UPDATE user_tab SET
+        magic = #{magic},plot = #{plot},science_fiction = #{science_fiction},
+        romance = #{romance},history = #{history}, comedy = #{comedy},
+        user_tab.action = #{action},animation = #{animation},
+        horror = #{horror}, war = #{war}
+        WHERE user_id = #{user_id}
+    </update>
 </mapper>

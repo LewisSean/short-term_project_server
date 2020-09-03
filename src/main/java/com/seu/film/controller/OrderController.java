@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.swing.plaf.synth.SynthEditorPaneUI;
 import java.util.List;
 
 @Controller
@@ -82,7 +83,10 @@ public class OrderController {
             if(film_tab.isHorror())user_tab.setHorror(user_tab.getHorror() + flag);
             if(film_tab.isAnimation())user_tab.setAnimation(user_tab.getAnimation() + flag);
             if(film_tab.isWar())user_tab.setWar(user_tab.getWar() + flag);
-            user_tabService.modifyUser_tab(user_tab);
+            System.out.println("------------------------------------------------------"+user_tab.toString());
+            ResultDTO<User_tab> res = user_tabService.modifyUser_tab(user_tab);
+            System.out.println(res.toString());
+            System.out.println("------------------------------------------------------");
         }
 
         return retVal;

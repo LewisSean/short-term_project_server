@@ -29,7 +29,19 @@ public class User_tabServiceImpl implements User_tabService{
 
     @Override
     public ResultDTO<User_tab> modifyUser_tab(User_tab user_tab) {
-        return null;
+        ResultDTO<User_tab> resultDTO = new ResultDTO<>();
+        try{
+            int i = user_tabMapper.modifyUser_tab(user_tab);
+            if(i > 0){
+                resultDTO.setMsg("修改用户标签成功!");
+            }else{
+                resultDTO.setMsg("修改用户标签成功!");
+            }
+
+        }catch(Exception e){
+            resultDTO.setMsg("fail!");
+        }
+        return resultDTO;
     }
 
 }
