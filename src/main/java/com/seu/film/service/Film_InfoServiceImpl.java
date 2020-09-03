@@ -23,7 +23,7 @@ public class Film_InfoServiceImpl implements Film_InfoService{
         List<Film_info> data = new ArrayList<>();
         data = film_infoMapper.findAllFilm();
         resultDTO.setData(data);
-        resultDTO.setCode(0);
+        resultDTO.setCode(data.size());
         resultDTO.setMsg("查询所有电影");
         return resultDTO;
     }
@@ -34,7 +34,7 @@ public class Film_InfoServiceImpl implements Film_InfoService{
         List<Film_info> data = new ArrayList<>();
         data = film_infoMapper.findFilmByKeyWord(keyWord);
         resultDTO.setData(data);
-        resultDTO.setCode(7);
+        resultDTO.setCode(data.size());
         resultDTO.setMsg("关键字查询电影");
         return resultDTO;
     }
@@ -45,7 +45,7 @@ public class Film_InfoServiceImpl implements Film_InfoService{
         List<Film_tab> data = new ArrayList<>();
         data = film_infoMapper.findFilm_tabById(id);
         resultDTO.setData(data);
-        resultDTO.setCode(0);
+        resultDTO.setCode(data.size());
         resultDTO.setMsg("id查询电影标签");
         return resultDTO;
     }
@@ -56,7 +56,7 @@ public class Film_InfoServiceImpl implements Film_InfoService{
         List<Film_tab> data = new ArrayList<>();
         data = film_infoMapper.findAllFilm_tab();
         resultDTO.setData(data);
-        resultDTO.setCode(0);
+        resultDTO.setCode(data.size());
         resultDTO.setMsg("查询所有电影标签");
         return resultDTO;
     }

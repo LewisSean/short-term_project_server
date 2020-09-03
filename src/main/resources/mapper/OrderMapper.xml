@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seu.film.mapper.OrderMapper">    <!-- 注意修改-->
+    <!-- #{name} 获取Info对象的name
+    模糊查询： name LIKE '%${name}$%'-->
+    <select id="findOrderByUser_id" resultType="Order" parameterType="Int">
+        SELECT * FROM film.order WHERE user_id = #{user_id}
+    </select>
+
+    <select id="findOrderByFilm_shows" resultType="Order" parameterType="Film_shows">
+        SELECT * FROM film.order WHERE start_time=#{start_time} AND hall_id=#{hall_id}
+    </select>
+
+    <select id="findOrderByOrder_id" resultType="Order" parameterType="Int">
+        SELECT * FROM film.order WHERE order_id = #{order_id}
+    </select>
+
+</mapper>

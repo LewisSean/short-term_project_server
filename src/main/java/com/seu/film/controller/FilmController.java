@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("test3")
-public class FlimController {
+public class FilmController {
     @Autowired
     Film_InfoService film_infoService;
 
