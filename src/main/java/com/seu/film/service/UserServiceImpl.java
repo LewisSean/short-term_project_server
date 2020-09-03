@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
         List<User> data = new ArrayList<>();
         data = userMapper.findUserInfo(user);
         resultDTO.setData(data);
-        resultDTO.setCode(5);
+        resultDTO.setCode(data.size());
         resultDTO.setMsg("success");
         return resultDTO;
     }
@@ -48,5 +48,21 @@ public class UserServiceImpl implements UserService{
     @Override
     public ResultDTO<User> modifyUserInfo(User user) {
         return null;
+    }
+
+    @Override
+    public ResultDTO<User> login(User user) {
+        ResultDTO<User> resultDTO = new ResultDTO<>();
+        List<User> data = new ArrayList<>();
+        data = userMapper.login(user);
+        resultDTO.setData(data);
+        resultDTO.setCode(data.size());
+        if(resultDTO.getCode()!=0) {
+            resultDTO.setMsg("success");
+        }
+        else{
+            resultDTO.setMsg("fail");
+        }
+        return resultDTO;
     }
 }

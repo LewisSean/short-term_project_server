@@ -118,4 +118,21 @@ public class User_tab {
     public void setWar(int war) {
         this.war = war;
     }
+
+    @Override
+    public String toString() {
+        return "User_tab{" +
+                "user_id=" + user_id +
+                ", magic=" + magic +
+                ", plot=" + plot +
+                ", science_fiction=" + science_fiction +
+                ", romance=" + romance +
+                ", history=" + history +
+                ", comedy=" + comedy +
+                ", action=" + action +
+                ", horror=" + horror +
+                ", animation=" + animation +
+                ", war=" + war +
+                '}';
+    }
 }

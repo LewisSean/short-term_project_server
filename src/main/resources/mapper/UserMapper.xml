@@ -8,14 +8,20 @@
     paramentType="User",输入参数类型；
     #{name} 获取User对象的name
     模糊查询： name LIKE '%${name}$%'-->
+
+    <select id="login" resultType="User" parameterType="User">
+        SELECT * FROM user WHERE user_id = #{user_id} AND pwd=#{pwd}
+    </select>
+
     <select id="findUserInfo" resultType="User" parameterType="User">
-        SELECT * FROM user WHERE user_name = #{user_name} AND user_id = #{user_id}
+        SELECT * FROM user WHERE user_id = #{user_id}
     </select>
 
     <insert id="addUserInfo" parameterType="User">
         INSERT INTO user (img_url,user_name,pwd,balance,level)
         VALUES (#{img_url},#{user_name},#{pwd},#{balance},#{level})
     </insert>
+
 
 
 

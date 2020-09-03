@@ -22,10 +22,11 @@ public class UserController {
     User_tabService user_tabService;
 
     //http://localhost:8090/film/test1.html
-    @PostMapping("/login")      //只能响应post请求，get请求不可以
-    public String login(User user) throws Exception{
+    @RequestMapping("/login")      //只能响应post请求，get请求不可以
+    @ResponseBody
+    public ResultDTO<User> login(@RequestBody User user) throws Exception{
         System.out.println(user.toString());
-        return "index";                                    //跳转到index页面
+        return userService.login(user);                                    //跳转到index页面
     }
 
     @RequestMapping("/findUserInfo")
@@ -49,7 +50,7 @@ public class UserController {
         return userService.modifyUserInfo(user);
     }
 
-    @RequestMapping("/findUserInfo_tab")
+    @RequestMapping("/findUser_tab")
     @ResponseBody
     public ResultDTO<User_tab> findUser_tab(@RequestBody User_tab user_tab)throws Exception{
         System.out.println(user_tab.toString());

@@ -7,8 +7,8 @@
     paramentType="User",输入参数类型；
     #{name} 获取User对象的name
     模糊查询： name LIKE '%${name}$%'-->
-    <select id="findUserTab" resultType="User_tab" parameterType="User_tab">
-        SELECT * FROM user_tab WHERE user_name = #{user_name} AND user_id = #{user_id}
+    <select id="findUser_Tab" resultType="User_tab" parameterType="User_tab">
+        SELECT * FROM user_tab WHERE user_id = #{user_id}
     </select>
 
 
