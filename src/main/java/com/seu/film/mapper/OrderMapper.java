@@ -17,4 +17,6 @@ public interface OrderMapper {
     List<Order> findOrderByOrder_id(int order_id);
 
     int deleteOrder(int order_id);
+
+    int addOrder(Order order_id);
 }

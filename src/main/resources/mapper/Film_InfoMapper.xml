@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seu.film.mapper.Film_InfoMapper">
+
+
+    <select id="findAllFilm" resultType="Map" >
+        SELECT
+            film_info.film_id, film_name,post_url,release_date,director,
+            country,duration,actor_list,state,video_url,
+            magic,plot,science_fiction,romance,history,comedy,film_tab.action,
+            horror,animation,war
+        FROM film_info, film_tab  WHERE film_info.film_id = film_tab.film_id
+    </select>
+
+    <select id="findAllFilm_on_show" resultType="Map" >
+        SELECT
+            film_info.film_id, film_name,post_url,release_date,director,
+            country,duration,actor_list,state,video_url,
+            magic,plot,science_fiction,romance,history,comedy,film_tab.action,
+            horror,animation,war
+        FROM film_info, film_tab  WHERE film_info.film_id = film_tab.film_id
+    </select>
+
+    <select id="findFilmByKeyWord" resultType="Map" parameterType="String">
+        SELECT
+            film_info.film_id, film_name,post_url,release_date,director,
+            country,duration,actor_list,state,video_url,
+            magic,plot,science_fiction,romance,history,comedy,film_tab.action,
+            horror,animation,war
+        FROM film_info, film_tab  WHERE film_info.film_id = film_tab.film_id AND
+        film_name LIKE '%${value}%'
+    </select>
+</mapper>

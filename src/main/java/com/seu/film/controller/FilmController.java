@@ -33,7 +33,7 @@ public class FilmController {
     //查询所有电影场次信息，返回的是film_info和film_tab表连接查询的记录
     @RequestMapping("/findAllFilm")
     @ResponseBody
-    public ResultDTO<Film_info> findAllFilm() throws Exception{
+    public ResultDTO<Map> findAllFilm() throws Exception{
         return film_infoService.findAllFilm();
     }
 
@@ -41,7 +41,7 @@ public class FilmController {
     //查询所有 正 在 上 映 的电影场次信息，返回的是film_info和film_tab表连接查询的记录
     @RequestMapping("/findAllFilm_on_show")
     @ResponseBody
-    public ResultDTO<Film_info> findAllFilm_on_show() throws Exception{
+    public ResultDTO<Map> findAllFilm_on_show() throws Exception{
         return film_infoService.findAllFilm_on_show();
     }
 
@@ -49,7 +49,7 @@ public class FilmController {
     //film_name关键词模糊查询电影信息，返回的是film_info和film_tab表连接查询的记录
     @RequestMapping("/findFilm/{keyWord}")
     @ResponseBody
-    public ResultDTO<Film_info> findFilm(@PathVariable("keyWord")String keyWord) throws Exception{
+    public ResultDTO<Map> findFilm(@PathVariable("keyWord")String keyWord) throws Exception{
         System.out.println(keyWord);
         return film_infoService.findFilmByKeyWord(keyWord);
     }

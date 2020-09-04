@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 @Service( "film_InfoService")     //绑定类TestController里面的infoService， string IOC技术
 @Transactional
@@ -25,9 +22,9 @@ public class Film_InfoServiceImpl implements Film_InfoService{
     User_tabMapper userTabMapper;
 
     @Override
-    public ResultDTO<Film_info> findAllFilm() {
-        ResultDTO<Film_info> resultDTO = new ResultDTO<>();
-        List<Film_info> data = new ArrayList<>();
+    public ResultDTO<Map> findAllFilm() {
+        ResultDTO<Map> resultDTO = new ResultDTO<>();
+        List<Map> data = new ArrayList<>();
         data = film_infoMapper.findAllFilm();
         resultDTO.setData(data);
         resultDTO.setCode(data.size());
@@ -36,9 +33,9 @@ public class Film_InfoServiceImpl implements Film_InfoService{
     }
 
     @Override
-    public ResultDTO<Film_info> findAllFilm_on_show() {
-        ResultDTO<Film_info> resultDTO = new ResultDTO<>();
-        List<Film_info> data = new ArrayList<>();
+    public ResultDTO<Map> findAllFilm_on_show() {
+        ResultDTO<Map> resultDTO = new ResultDTO<>();
+        List<Map> data = new ArrayList<>();
         data = film_infoMapper.findAllFilm_on_show();
         resultDTO.setData(data);
         resultDTO.setCode(data.size());
@@ -47,9 +44,9 @@ public class Film_InfoServiceImpl implements Film_InfoService{
     }
 
     @Override
-    public ResultDTO<Film_info> findFilmByKeyWord(String keyWord) {
-        ResultDTO<Film_info> resultDTO = new ResultDTO<>();
-        List<Film_info> data = new ArrayList<>();
+    public ResultDTO<Map> findFilmByKeyWord(String keyWord) {
+        ResultDTO<Map> resultDTO = new ResultDTO<>();
+        List<Map> data = new ArrayList<>();
         data = film_infoMapper.findFilmByKeyWord(keyWord);
         resultDTO.setData(data);
         resultDTO.setCode(data.size());

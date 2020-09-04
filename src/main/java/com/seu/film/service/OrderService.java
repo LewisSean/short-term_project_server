@@ -15,4 +15,6 @@ public interface OrderService {
     ResultDTO<Order> findOrderByOrder_id(int order_id);
 
     ResultDTO<Order> deleteOrder(int order_id);
+
+    ResultDTO<Order> addOrder(Order order);
 }

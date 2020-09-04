@@ -100,4 +100,51 @@ public class OrderServiceImpl implements OrderService{
         }
         return resultDTO;
     }
+
+    @Override
+    public ResultDTO<Order> addOrder(Order order) {
+        ResultDTO<Order> resultDTO = new ResultDTO<>();
+        try{
+            User user = new User();
+            user.setUser_id(order.getUser_id());
+            user = userMapper.findUserInfo(user).get(0);
+            if(user.getBalance() < order.getCost()){
+                resultDTO.setMsg("余额不足!");
+                resultDTO.setCode(0);
+                return resultDTO;
+            }
+            int i = orderMapper.addOrder(order);
+            if(i > 0){
+                resultDTO.setMsg("订票成功!");
+                resultDTO.setCode(i);
+                //订单成功，需要修改film_shows对应的场次信息
+
+                Film_shows film_shows = new Film_shows();
+                film_shows.setStart_time(order.getStart_time());
+                film_shows.setHall_id(order.getHall_id());
+                film_shows = film_showsMapper.find_one_Film_shows(film_shows);
+
+                System.out.println("----------------------------\n"+film_shows.toString());
+
+                String new_reserve_info = MyTool.addReserve(film_shows.getReserve_info(), order.getSeats());
+                film_shows.setReserve_info(new_reserve_info);
+                System.out.println("----------------------------\n"+"new_reserve_info:" + new_reserve_info);
+                System.out.println("----------------------------\n"+"new_reserve_info:" + film_shows.getReserve_info());
+                film_showsMapper.updateFilm_shows(film_shows);
+
+                //退款成功，需要修改用户余额
+                user.setBalance(user.getBalance()-order.getCost());
+                userMapper.modifyUserBalance(user);
+
+
+            }else{
+                resultDTO.setMsg("购票失败!");
+                resultDTO.setCode(0);
+            }
+
+        }catch(Exception e){
+            resultDTO.setMsg("fail!");
+        }
+        return resultDTO;
+    }
 }
