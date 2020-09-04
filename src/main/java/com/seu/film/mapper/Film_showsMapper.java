@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Update;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface Film_showsMapper {
     @Select("SELECT * FROM film_shows")
@@ -14,5 +15,8 @@ public interface Film_showsMapper {
     List<Film_shows> findFilm_showsById(int id);
 
 
+    Film_shows find_one_Film_shows(Film_shows target);
+
     int updateFilm_shows(Film_shows film_shows);
+
 }

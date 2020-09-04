@@ -34,6 +34,7 @@ public class User_tabServiceImpl implements User_tabService{
             int i = user_tabMapper.modifyUser_tab(user_tab);
             if(i > 0){
                 resultDTO.setMsg("修改用户标签成功!");
+                resultDTO.setCode(i);
             }else{
                 resultDTO.setMsg("修改用户标签成功!");
             }

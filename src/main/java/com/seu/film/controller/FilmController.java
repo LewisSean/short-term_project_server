@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping("test3")
 public class FilmController {
 
-    private static int k = 1;
+    private static int k = 4;
 
     @Autowired
     Film_InfoService film_infoService;
@@ -35,7 +37,15 @@ public class FilmController {
         return film_infoService.findAllFilm();
     }
 
-    //http://localhost:8090/film/test3/findFilm/fight
+    //http://localhost:8090/film/test3/findAllFilm_on_show
+    //查询所有 正 在 上 映 的电影场次信息，返回的是film_info和film_tab表连接查询的记录
+    @RequestMapping("/findAllFilm_on_show")
+    @ResponseBody
+    public ResultDTO<Film_info> findAllFilm_on_show() throws Exception{
+        return film_infoService.findAllFilm_on_show();
+    }
+
+    //http://localhost:8090/film/test3/findFilm/
     //film_name关键词模糊查询电影信息，返回的是film_info和film_tab表连接查询的记录
     @RequestMapping("/findFilm/{keyWord}")
     @ResponseBody
@@ -89,7 +99,8 @@ public class FilmController {
     }
 
 
-    //http://localhost:8090/film/test3/guess_you_like/1
+
+    //http://localhost:8090/film/test3/guess_you_like/1      注意：id1号喜欢动画，魔幻
     //根据用户user_tab查询前K部猜你喜欢的电影，返回的是film_info和film_tab表连接查询的记录
     //向量模型
     @RequestMapping("/guess_you_like/{user_id}")

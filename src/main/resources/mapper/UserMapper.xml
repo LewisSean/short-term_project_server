@@ -18,8 +18,8 @@
     </select>
 
     <insert id="addUserInfo" parameterType="User">
-        INSERT INTO user (img_url,user_name,pwd,balance,level)
-        VALUES (#{img_url},#{user_name},#{pwd},#{balance},#{level})
+        INSERT INTO user (user_id,img_url,user_name,pwd,balance,level)
+        VALUES (#{user_id},#{img_url},#{user_name},#{pwd},#{balance},#{level})
     </insert>
 
     <update id="modifyUserInfo" parameterType="User">
@@ -27,5 +27,9 @@
         WHERE user_id=#{user_id}
     </update>
 
+    <update id="modifyUserBalance" parameterType="User">
+        UPDATE user SET balance=#{balance}
+        WHERE user_id=#{user_id}
+    </update>
 
 </mapper>

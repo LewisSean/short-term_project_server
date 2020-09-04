@@ -14,11 +14,12 @@ public class Order {
     private Date start_time;
     private int hall_id;
     private String seats;
+    private int cost;
 
     public Order() {
     }
 
-    public Order(int user_id, int order_id, Date order_time, int film_id, Date start_time, int hall_id, String seats) {
+    public Order(int user_id, int order_id, Date order_time, int film_id, Date start_time, int hall_id, String seats, int cost) {
         this.user_id = user_id;
         this.order_id = order_id;
         this.order_time = order_time;
@@ -26,6 +27,15 @@ public class Order {
         this.start_time = start_time;
         this.hall_id = hall_id;
         this.seats = seats;
+        this.cost = cost;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 
     public int getUser_id() {
@@ -94,6 +104,7 @@ public class Order {
                 ", start_time=" + start_time +
                 ", hall_id=" + hall_id +
                 ", seats='" + seats + '\'' +
+                ", cost=" + cost +
                 '}';
     }
 }

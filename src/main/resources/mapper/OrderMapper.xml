@@ -17,4 +17,11 @@
         SELECT * FROM film.order WHERE order_id = #{order_id}
     </select>
 
+
+    <delete id="deleteOrder"  parameterType="Int">
+        DELETE FROM film.order
+        WHERE  start_time > NOW()  AND order_id = #{order_id}
+    </delete>
+
+
 </mapper>

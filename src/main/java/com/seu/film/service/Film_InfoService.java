@@ -7,6 +7,7 @@ import com.seu.film.pojo.User_tab;
 
 public interface Film_InfoService {
     ResultDTO<Film_info> findAllFilm();
+    ResultDTO<Film_info> findAllFilm_on_show();
     ResultDTO<Film_info> findFilmByKeyWord(String keyWord);
     ResultDTO<Film_tab> findFilm_tabById(int id);
     ResultDTO<Film_tab> findAllFilm_tab();

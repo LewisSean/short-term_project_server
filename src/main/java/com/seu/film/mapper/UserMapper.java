@@ -3,6 +3,7 @@ package com.seu.film.mapper;
 import com.seu.film.pojo.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper {
     //查询用户信息
@@ -17,4 +18,6 @@ public interface UserMapper {
 
     //登录
     List<User> login(User user);
+
+    int modifyUserBalance(User user);
 }

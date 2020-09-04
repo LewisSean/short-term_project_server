@@ -2,6 +2,7 @@ package com.seu.film.controller;
 
 import com.seu.film.pojo.*;
 import com.seu.film.service.*;
+import com.seu.film.tool.MyTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,8 @@ public class OrderController {
     @Autowired
     Film_InfoService film_infoService;
 
+
+
     //http://localhost:8090/film/test2/findOrderByUser_id/1
     //返回一个用户的所有订单记录，user_id为查询关键字
     @RequestMapping("/findOrderByUser_id/{user_id}")
@@ -50,7 +53,7 @@ public class OrderController {
     }
 
 
-    //http://localhost:8090/film/test2/findOrderByOrder_id/2
+    //http://localhost:8090/film/test2/findOrderByOrder_id/102
     //通过order_id查找order表的订单记录
     @RequestMapping("/findOrderByOrder_id/{order_id}")
     @ResponseBody
@@ -107,6 +110,15 @@ public class OrderController {
     public ResultDTO<Map> findOrder_evaluationByFilm_id(@PathVariable("film_id")int film_id) throws Exception{
         return order_evaluationService.findOrder_evaluationByFilm_id(film_id);
     }
+
+    //http://localhost:8090/film/test2/deleteOrder/501
+    //根据一个订单号删除订单
+    @RequestMapping("/deleteOrder/{order_id}")
+    @ResponseBody
+    public ResultDTO<Order> deleteOrder(@PathVariable("order_id")int order_id) throws Exception{
+        return orderService.deleteOrder(order_id);
+    }
+
 
 
 

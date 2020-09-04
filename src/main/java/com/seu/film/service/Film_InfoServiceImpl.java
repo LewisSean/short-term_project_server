@@ -36,6 +36,17 @@ public class Film_InfoServiceImpl implements Film_InfoService{
     }
 
     @Override
+    public ResultDTO<Film_info> findAllFilm_on_show() {
+        ResultDTO<Film_info> resultDTO = new ResultDTO<>();
+        List<Film_info> data = new ArrayList<>();
+        data = film_infoMapper.findAllFilm_on_show();
+        resultDTO.setData(data);
+        resultDTO.setCode(data.size());
+        resultDTO.setMsg("查询所有正在上映的电影");
+        return resultDTO;
+    }
+
+    @Override
     public ResultDTO<Film_info> findFilmByKeyWord(String keyWord) {
         ResultDTO<Film_info> resultDTO = new ResultDTO<>();
         List<Film_info> data = new ArrayList<>();

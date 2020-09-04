@@ -25,6 +25,7 @@ public class Order_evaluationServiceImpl implements  Order_evaluationService{
             int i = order_evaluationMapper.addEvaluation(order_evaluation);
             if(i > 0){
                 resultDTO.setMsg("添加评价成功!");
+                resultDTO.setCode(i);
             }else{
                 resultDTO.setMsg("添加评论失败!");
             }

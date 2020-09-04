@@ -13,4 +13,6 @@ public interface OrderService {
 
     //根据订单id查询
     ResultDTO<Order> findOrderByOrder_id(int order_id);
+
+    ResultDTO<Order> deleteOrder(int order_id);
 }

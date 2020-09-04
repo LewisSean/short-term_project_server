@@ -10,4 +10,9 @@
         UPDATE film_shows SET reserve_info = #{reserve_info}
         WHERE hall_id = #{hall_id} AND start_time = #{start_time}
     </update>
+
+    <select id="find_one_Film_shows" resultType="Film_shows" parameterType="Film_shows">
+        SELECT * FROM film_shows WHERE hall_id = #{hall_id} AND start_time = #{start_time}
+    </select>
+
 </mapper>

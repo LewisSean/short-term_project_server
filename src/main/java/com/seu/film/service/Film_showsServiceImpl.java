@@ -47,6 +47,7 @@ public class Film_showsServiceImpl implements  Film_showsService{
             int i = film_showsMapper.updateFilm_shows(film_shows);
             if(i > 0){
                 resultDTO.setMsg("修改场次信息成功!");
+                resultDTO.setCode(i);
             }else{
                 resultDTO.setMsg("修改场次失败!");
             }

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping("test1")
 public class UserController {
@@ -47,6 +49,13 @@ public class UserController {
     public ResultDTO<User> modifyUserInfo(@RequestBody User user)throws Exception{
         System.out.println(user.toString());
         return userService.modifyUserInfo(user);
+    }
+
+    //POST方法，用Map{键值  user_id   balance}对象来修改user表的用户的余额
+    @RequestMapping("/modifyUserBalance")
+    @ResponseBody
+    public ResultDTO<User> modifyUserBalance(@RequestBody User user)throws Exception{
+        return userService.modifyUserBalance(user);
     }
 
     //http://localhost:8090/film/test1/findUser_tab/1
