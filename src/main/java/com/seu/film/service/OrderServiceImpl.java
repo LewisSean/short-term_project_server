@@ -26,9 +26,9 @@ public class OrderServiceImpl implements OrderService{
     UserMapper userMapper;
 
     @Override
-    public ResultDTO<Order> findOrderByUser_id(int user_id) {
-        ResultDTO<Order> resultDTO = new ResultDTO<>();
-        List<Order> data = new ArrayList<>();
+    public ResultDTO<Map> findOrderByUser_id(int user_id) {
+        ResultDTO<Map> resultDTO = new ResultDTO<>();
+        List<Map> data = new ArrayList<>();
         data = orderMapper.findOrderByUser_id(user_id);
         resultDTO.setData(data);
         resultDTO.setCode(data.size());

@@ -15,4 +15,11 @@
         WHERE  order_evaluation.order_id = film.order.order_id AND film.order.user_id = film.user.user_id
         AND film.order.film_id = #{film_id}
     </select>
+
+    <select id="findOrder_evaluationByUser_id" resultType="Map" parameterType="Int">
+        SELECT film_name,rank, mark FROM film.order, film.user, order_evaluation, film_info
+        WHERE  order_evaluation.order_id = film.order.order_id AND film.order.user_id = film.user.user_id
+        AND film.order.film_id = film_info.film_id
+        AND film.order.user_id = #{user_id}
+    </select>
 </mapper>

@@ -35,7 +35,7 @@ public class OrderController {
     //返回一个用户的所有订单记录，user_id为查询关键字
     @RequestMapping("/findOrderByUser_id/{user_id}")
     @ResponseBody
-    public ResultDTO<Order> findOrderByUser_id(@PathVariable("user_id")int user_id) throws Exception{
+    public ResultDTO<Map> findOrderByUser_id(@PathVariable("user_id")int user_id) throws Exception{
         System.out.println(user_id);
         return orderService.findOrderByUser_id(user_id);
     }
@@ -109,6 +109,14 @@ public class OrderController {
     @ResponseBody
     public ResultDTO<Map> findOrder_evaluationByFilm_id(@PathVariable("film_id")int film_id) throws Exception{
         return order_evaluationService.findOrder_evaluationByFilm_id(film_id);
+    }
+
+    //http://localhost:8090/film/test2/findOrder_evaluationByUser_id/1
+    //通过film_id查询一部电影的所有影评(返回的是：{user_name，rank(int, 1~5星级)，mark(string,影评)} )
+    @RequestMapping("/findOrder_evaluationByUser_id/{user_id}")
+    @ResponseBody
+    public ResultDTO<Map> findOrder_evaluationByUser_id(@PathVariable("user_id")int user_id) throws Exception{
+        return order_evaluationService.findOrder_evaluationByUser_id(user_id);
     }
 
     //http://localhost:8090/film/test2/deleteOrder/501

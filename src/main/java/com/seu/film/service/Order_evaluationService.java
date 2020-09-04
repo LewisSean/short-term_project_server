@@ -10,4 +10,5 @@ import java.util.Map;
 public interface Order_evaluationService {
     ResultDTO<Order_evaluation> addEvaluation(Order_evaluation order_evaluation);
     ResultDTO<Map> findOrder_evaluationByFilm_id(int film_id);
+    ResultDTO<Map> findOrder_evaluationByUser_id(int user_id);
 }

@@ -47,5 +47,16 @@ public class Order_evaluationServiceImpl implements  Order_evaluationService{
         return resultDTO;
 
     }
+
+    @Override
+    public ResultDTO<Map> findOrder_evaluationByUser_id(int user_id) {
+        ResultDTO<Map> resultDTO = new ResultDTO<>();
+        List<Map> data = new ArrayList<>();
+        data = order_evaluationMapper.findOrder_evaluationByUser_id(user_id);
+        resultDTO.setData(data);
+        resultDTO.setCode(data.size());
+        resultDTO.setMsg("success");
+        return resultDTO;
+    }
 }
 

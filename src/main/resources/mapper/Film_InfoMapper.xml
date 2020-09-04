@@ -20,7 +20,7 @@
             country,duration,actor_list,state,video_url,
             magic,plot,science_fiction,romance,history,comedy,film_tab.action,
             horror,animation,war
-        FROM film_info, film_tab  WHERE film_info.film_id = film_tab.film_id
+        FROM film_info, film_tab  WHERE film_info.film_id = film_tab.film_id  AND  state=1
     </select>
 
     <select id="findFilmByKeyWord" resultType="Map" parameterType="String">

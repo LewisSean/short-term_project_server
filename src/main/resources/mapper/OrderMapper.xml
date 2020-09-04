@@ -5,8 +5,9 @@
 <mapper namespace="com.seu.film.mapper.OrderMapper">    <!-- 注意修改-->
     <!-- #{name} 获取Info对象的name
     模糊查询： name LIKE '%${name}$%'-->
-    <select id="findOrderByUser_id" resultType="Order" parameterType="Int">
-        SELECT * FROM film.order WHERE user_id = #{user_id}
+    <select id="findOrderByUser_id" resultType="Map" parameterType="Int">
+        SELECT order_id,start_time,seats,cost,post_url,film_name
+        FROM film.order,film_info WHERE user_id = #{user_id} and film.order.film_id=film_info.film_id
     </select>
 
     <select id="findOrderByFilm_shows" resultType="Order" parameterType="Film_shows">
