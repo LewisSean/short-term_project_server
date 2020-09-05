@@ -11,10 +11,6 @@ public interface Film_InfoMapper {
 
 
 
-    //@Select("SELECT * FROM film_info INNER JOIN film_tab  ON film_info.film_id = film_tab.film_id WHERE film_info.state=1")
-
-
-    //@Select("SELECT * FROM film_info,film_tab WHERE film_info.film_id = film_tab.film_id and film_name LIKE '%${value}%'")
     List<Map> findFilmByKeyWord(String keyWord);
     @Select("SELECT * FROM film_tab WHERE film_id = #{value}")
     List<Film_tab> findFilm_tabById(int id);
