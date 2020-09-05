@@ -129,7 +129,9 @@ public class OrderController {
 
 
     //http://localhost:8090/film/test2/addOrder
-    //根据一个订单号删除订单
+    //根据一个订单号添加订单
+
+    //订单号
     @RequestMapping("/addOrder")
     @ResponseBody
     public ResultDTO<Order> addOrder(@RequestBody Order order_id) throws Exception{

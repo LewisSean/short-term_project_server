@@ -25,6 +25,8 @@ public class OrderServiceImpl implements OrderService{
     @Resource
     UserMapper userMapper;
 
+
+
     @Override
     public ResultDTO<Map> findOrderByUser_id(int user_id) {
         ResultDTO<Map> resultDTO = new ResultDTO<>();
@@ -63,28 +65,22 @@ public class OrderServiceImpl implements OrderService{
     public ResultDTO<Order> deleteOrder(int order_id) {
         ResultDTO<Order> resultDTO = new ResultDTO<>();
         try{
+            //保存将要删除的订单信息
             Order order2del= orderMapper.findOrderByOrder_id(order_id).get(0);
+            //删除订单
             int i = orderMapper.deleteOrder(order_id);
             if(i > 0){
                 resultDTO.setMsg("退款成功!");
                 resultDTO.setCode(i);
-                //退款成功，需要删除film_shows对应的场次信息
-
-                //先查到对应的电影场次信息
+                //查询并修改对应的电影场次的座位信息
                 Film_shows film_shows = new Film_shows();
                 film_shows.setStart_time(order2del.getStart_time());
                 film_shows.setHall_id(order2del.getHall_id());
                 film_shows = film_showsMapper.find_one_Film_shows(film_shows);
-
-                System.out.println("----------------------------\n"+film_shows.toString());
-
                 String new_reserve_info = MyTool.deleteReserve(film_shows.getReserve_info(), order2del.getSeats());
                 film_shows.setReserve_info(new_reserve_info);
-                System.out.println("----------------------------\n"+"new_reserve_info:" + new_reserve_info);
-                System.out.println("----------------------------\n"+"new_reserve_info:" + film_shows.getReserve_info());
                 film_showsMapper.updateFilm_shows(film_shows);
-
-                //退款成功，需要修改用户余额
+                //修改用户的余额
                 User user = new User();
                 user.setUser_id(order2del.getUser_id());
                 user = userMapper.findUserInfo(user).get(0);
@@ -104,9 +100,11 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public ResultDTO<Order> addOrder(Order order) {
         ResultDTO<Order> resultDTO = new ResultDTO<>();
+        order.setOrder_id(MyTool.getOrderId());
         try{
             User user = new User();
             user.setUser_id(order.getUser_id());
+            //获取用户余额，余额不足则无法购票并退出
             user = userMapper.findUserInfo(user).get(0);
             if(user.getBalance() < order.getCost()){
                 resultDTO.setMsg("余额不足!");
@@ -117,22 +115,15 @@ public class OrderServiceImpl implements OrderService{
             if(i > 0){
                 resultDTO.setMsg("订票成功!");
                 resultDTO.setCode(i);
-                //订单成功，需要修改film_shows对应的场次信息
-
+                //修改对应的电影场次的座位信息
                 Film_shows film_shows = new Film_shows();
                 film_shows.setStart_time(order.getStart_time());
                 film_shows.setHall_id(order.getHall_id());
                 film_shows = film_showsMapper.find_one_Film_shows(film_shows);
-
-                System.out.println("----------------------------\n"+film_shows.toString());
-
                 String new_reserve_info = MyTool.addReserve(film_shows.getReserve_info(), order.getSeats());
                 film_shows.setReserve_info(new_reserve_info);
-                System.out.println("----------------------------\n"+"new_reserve_info:" + new_reserve_info);
-                System.out.println("----------------------------\n"+"new_reserve_info:" + film_shows.getReserve_info());
                 film_showsMapper.updateFilm_shows(film_shows);
-
-                //退款成功，需要修改用户余额
+                //修改用户余额
                 user.setBalance(user.getBalance()-order.getCost());
                 userMapper.modifyUserBalance(user);
 

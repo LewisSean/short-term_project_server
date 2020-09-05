@@ -25,9 +25,9 @@
     </delete>
 
 
-    <insert id="addEvaluation" parameterType="Order_evaluation">
+    <insert id="addOrder" parameterType="Order">
         INSERT INTO film.order (user_id,order_id,order_time,film_id,start_time,hall_id,seats,cost)
-        VALUES (#{user_id},#{order_id},#{order_time},#{film_id},#{start_time},#{hall_id},#{seats},#{cost})
+        VALUES (#{user_id},#{order_id},NOW(),#{film_id},#{start_time},#{hall_id},#{seats},#{cost})
     </insert>
 
 </mapper>
