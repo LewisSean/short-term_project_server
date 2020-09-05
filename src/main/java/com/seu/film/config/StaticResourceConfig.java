@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class StaticResourceConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        //写资源配置
         //static 文件夹
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
         //指定盘符   从/resource/** 转换到 C:\Users\Sean\Desktop\film
